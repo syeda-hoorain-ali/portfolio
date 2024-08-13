@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.card:hover .overlay {
+  top: 0;
+  opacity: 0.8;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .label {
+    @apply block text-sm font-semibold leading-6 text-gray-300;
+  }
+  .input {
+    @apply block w-full rounded-md border-0 px-3.5 py-2 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-600 bg-gray-900 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6;
+  }
+  .icons {
+    @apply size-16 border-2 border-fuchsia-600 rounded-full flex justify-center items-center cursor-pointer hover:bg-fuchsia-600 hover:glow hover:-translate-y-6 transition
+  }
+  .glow {
+    box-shadow: 0 0 10px #dec1e2, 0 0 10px #dec1e2, 0 0 40px #dec1e2;
+  }
+}
