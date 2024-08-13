@@ -65,7 +65,7 @@ const Home = () => {
               <span className="text-fuchsia-500">Hoorain</span>
             </h1>
 
-            <h2 className="text-4xl font-bold mb-3">I'm a {' '}
+            <h2 className="text-4xl font-bold mb-3">I&apos;m a {' '}
               <TypeAnimation
                 sequence={[
                   'Web Developer', 1000,
