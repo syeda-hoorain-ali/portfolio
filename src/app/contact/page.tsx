@@ -48,10 +48,10 @@ export default function Example() {
   }
 
   return (
-    <div className="isolat px-6 py-24 sm:py-32 lg:px-8">
+    <div className="isolat px-6 py-20 sm:py-10 lg:px-8">
 
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-5xl underline decoration-fuchsia-500 font-bold tracking-wide sm:text-4xl text-r">Contact Me</h2>
+        <h2 className="text-4xl underline decoration-fuchsia-500 font-bold tracking-wide">Contact Me</h2>
         <p className="mt-2 text-lg leading-8 text-gray-300">
           Aute magna irure deserunt veniam aliqua magna enim voluptate.
         </p>

@@ -55,17 +55,19 @@ const Home = () => {
   return (<>
 
     <Animate>
-      <header className="flex h-[calc(100vh-10rem)] px-32">
-        <div className="flex items-center gap-32 translate-3d">
-          <img src="/logo.jpg" alt="Syeda Hoorain Ali" className="rounded-full h-96 shadow-glow-fuchsia" />
+      <header className="flex min-h-[calc(100vh-10rem)] px-5 sm:px-10 md:px-32 py-8 sm:py-0">
+        <div className="flex flex-col sm:flex-row items-center gap-7 sm:gap-10 md:gap-20">
+          <div className="px-8 sm:px-0">
+            <img src="/logo.jpg" alt="Syeda Hoorain Ali" className="rounded-full md:size-80 lg:size-96 shadow-glow-fuchsia" />
+          </div>
 
-          <div className="flex flex-col">
-            <span className="text-3xl mb-3">Hi,</span>
-            <h1 className="text-6xl font-bold mb-8">I am {' '}
+          <div className="flex flex-col w-full">
+            <span className="text-xl sm:text-2xl mb-1">Hi,</span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-5">I am {' '}
               <span className="text-fuchsia-500">Hoorain</span>
             </h1>
 
-            <h2 className="text-4xl font-bold mb-3">I&apos;m a {' '}
+            <h2 className="text-xl md:text-3xl font-bold mb-2">I&apos;m a {' '}
               <TypeAnimation
                 sequence={[
                   'Web Developer', 1000,
@@ -80,17 +82,17 @@ const Home = () => {
                 preRenderFirstString={true}
               />
             </h2>
-            <h3 className="text-4xl font-bold">Future Cloud Applied Gen-AI Engineer...</h3>
+            <h3 className="text-xl md:text-3xl font-bold">Future Cloud Applied Gen-AI Engineer...</h3>
 
-            <ul className="flex gap-7 mt-10">
+            <ul className="flex gap-4 mt-6">
               <li className="icons">
-                <a href="https://github.com/syeda-hoorain-ali"><FaGithub className="size-9" /></a>
+                <a href="https://github.com/syeda-hoorain-ali"><FaGithub className="size-5 sm:size-7" /></a>
               </li>
               <li className="icons">
-                <a href="https://www.linkedin.com/in/syedahoorainali"><FaLinkedin className="size-9" /></a>
+                <a href="https://www.linkedin.com/in/syedahoorainali"><FaLinkedin className="size-5 sm:size-7" /></a>
               </li>
               <li className="icons">
-                <a href="https://www.npmjs.com/~syedahoorainali"><CgNpm className="size-9" /></a>
+                <a href="https://www.npmjs.com/~syedahoorainali"><CgNpm className="size-5 sm:size-7" /></a>
               </li>
             </ul>
           </div>
@@ -99,23 +101,25 @@ const Home = () => {
       </header>
     </Animate>
 
+    {/* About */}
     <Animate>
-      <section className=" px-32 flex flex-col items-center gap-8 my-7">
-        <h2 className="text-5xl underline decoration-fuchsia-500 font-bold tracking-wide sm:text-4xl">About Me</h2>
+      <section className="md:px-32 flex flex-col items-center gap-8 my-7">
+        <h2 className="text-4xl underline decoration-fuchsia-500 font-bold tracking-wide">About Me</h2>
 
         <img src="./logo.jpg" alt="Syeda Hoorain ali" className="h-52 rounded-lg" />
 
-        <p className="text-lg text-center px-16">
+        <p className="sm:text-lg text-center px-4 sm:px-16">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis corrupti soluta omnis minus excepturi, voluptates necessitatibus harum. Voluptate nulla earum ratione quod ipsam nihil? Tempore, eos error. Aliquid magnam ratione fuga non recusandae officiis, dolorem illum iste ad, velit nam! Itaque culpa doloribus libero eum explicabo molestiae voluptatibus officiis dolorum neque est nemo odio recusandae blanditiis magni nisi facilis illo, repellat, ipsa ad! Dolor illo fugit labore saepe nostrum praesentium maiores ullam, tempore, quos dolores voluptas officia eligendi nesciunt voluptatibus dicta odio harum vero laudantium explicabo? Quidem laudantium cum suscipit natus soluta facere sit ratione. Corrupti, voluptatum molestiae? Voluptatum, nisi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat iure magnam, ea molestiae cum quos, officia minima similique asperiores obcaecati veritatis distinctio vitae aperiam sed placeat dolorum quo. Dolor dignissimos voluptatem eius, reprehenderit obcaecati amet voluptate iste tempora quibusdam in explicabo, sit id velit accusantium modi sed distinctio, quidem ratione perferendis ducimus vitae architecto! Beatae aliquam consequatur ratione maxime! Aspernatur labore dolores itaque vel eveniet nihil non tempora quo ad, veritatis accusamus? Mollitia iste nesciunt alias ducimus earum neque facilis accusamus officia totam facere commodi consectetur assumenda, quae explicabo excepturi. Veniam animi cupiditate, ex ad distinctio nulla minus dolore, doloremque in repudiandae error cum at nihil earum non officia aut incidunt debitis facere consequuntur quae reprehenderit! Sed suscipit sapiente asperiores dicta ad eius quasi in consequatur, voluptates odit minus voluptatibus eaque reprehenderit ea id. Ab minus laboriosam quaerat rem soluta unde similique velit. Aperiam veniam, neque adipisci voluptatem perferendis beatae.
-          </p>
+        </p>
       </section>
     </Animate>
 
+    {/* Projects */}
     <Animate>
-      <section className=" px-32 flex flex-col items-center gap-8 my-20">
-        <h2 className="text-5xl underline decoration-fuchsia-500 font-bold tracking-wide sm:text-4xl text-r">My Projects</h2>
+      <section className="px-10 md:px-32 flex flex-col items-center gap-5 sm:gap-8 my-10 md:my-20">
+        <h2 className="text-4xl underline decoration-fuchsia-500 font-bold tracking-wide">My Projects</h2>
 
-        <div className="grid grid-rows-2 grid-cols-4 gap-10">
+        <div className="grid grid-rows-8 sm:grid-rows-4 md:grid-rows-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7 sm:gap-10">
           <Card github="https://github.com/syeda-hoorain-ali/text-editor" live="https://text-editor-hoorain.vercel.app/" title="Text Editor" image="./projects/text-editor.png" />
           <Card github="https://github.com/syeda-hoorain-ali/pass-guard" live="https://pass-guard-eight.vercel.app/" title="Password Manager" image="./projects/password-manager.png" />
           <Card github="https://github.com/syeda-hoorain-ali/twitter" live="https://syeda-hoorain-ali.github.io/twitter/" title="Twitter" image="./projects/twitter.png" />
@@ -127,17 +131,18 @@ const Home = () => {
           <Card github="https://github.com/syeda-hoorain-ali/amazon" live="https://syeda-hoorain-ali.github.io/amazon" title="Amazon" image="./projects/amazon.png" />
         </div>
 
-        <button className="text-lg border-2 border-fuchsia-600 px-5 py-2 rounded-full transition-all hover:bg-fuchsia-600 hover:shadow-glow-fuchsia hover:border-fuchsia-300">
+        <button className="sm:text-lg border-2 border-fuchsia-600 px-5 py-2 rounded-full transition-all hover:bg-fuchsia-600 hover:shadow-glow-fuchsia hover:border-fuchsia-300">
           <a href="https://github.com/syeda-hoorain-ali/">Show more</a>
         </button>
       </section>
     </Animate>
 
+    {/* contact */}
     <Animate>
-      <section className=" px-32 flex flex-col items-center gap-8 my-7">
-        <h2 className="text-5xl underline decoration-fuchsia-500 font-bold tracking-wide sm:text-4xl text-r">Contact Me</h2>
+      <section className="sm:px-10 md:px-32 flex flex-col items-center gap-8 my-7">
+        <h2 className="text-4xl underline decoration-fuchsia-500 font-bold tracking-wide">Contact Me</h2>
 
-        <form onSubmit={handleSubmit} className="mx-auto w-[40rem]">
+        <form onSubmit={handleSubmit} className="mx-auto max-w-2xl">
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
               <label htmlFor="first-name" className="label">

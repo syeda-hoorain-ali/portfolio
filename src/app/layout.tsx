@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={`relative h-full overflow-x-hidden ${inter.className}`}>
         <div className="fixed top-0 z-[-2] h-screen w-screen bg-black bg-gradient-radial bg-[size:20px_20px]"></div>
         <Navbar />
-        <main className="pt-20 min-h-screen">
+        <main className="pt-8 sm:pt-20 min-h-screen">
           {children}
           <ToastContainer theme="colored" />
         </main>

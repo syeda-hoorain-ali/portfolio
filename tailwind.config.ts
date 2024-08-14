@@ -8,6 +8,12 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      sm: '430px',  // for 425px and smaller
+      md: '770px',  // for 768px and smaller
+      lg: '1030px', // for 1024px and smaller
+      xl: '1450px', // for 1440px and smaller
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(#ffffff11 1px, #000000 1px)"
