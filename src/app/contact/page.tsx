@@ -53,11 +53,11 @@ export default function Example() {
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-4xl underline decoration-fuchsia-500 font-bold tracking-wide">Contact Me</h2>
         <p className="mt-2 text-lg leading-8 text-gray-300">
-          Aute magna irure deserunt veniam aliqua magna enim voluptate.
+        I&apos;m always excited to connect with fellow enthusiasts, collaborators, and potential mentors. Whether you have a project in mind or simply want to chat about tech, feel free to reach out!
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mx-auto mt-14 max-w-xl sm:mt-20">
+      <form onSubmit={handleSubmit} className="mx-auto mt-14 max-w-xl">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label htmlFor="first-name" className="label">

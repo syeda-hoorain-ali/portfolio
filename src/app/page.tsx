@@ -55,10 +55,10 @@ const Home = () => {
   return (<>
 
     <Animate>
-      <header className="flex min-h-[calc(100vh-10rem)] px-5 sm:px-10 md:px-32 py-8 sm:py-0">
+      <header className="flex min-h-[calc(100vh-10rem)] px-5 sm:px-10 md:px-32 py-8 smpy-0">
         <div className="flex flex-col sm:flex-row items-center gap-7 sm:gap-10 md:gap-20">
-          <div className="px-8 sm:px-0">
-            <img src="/logo.jpg" alt="Syeda Hoorain Ali" className="rounded-full md:size-80 lg:size-96 shadow-glow-fuchsia" />
+          <div className="px-8 sm:px-0 md:w-[30rem]">
+            <img src="/logo.jpg" alt="Syeda Hoorain Ali" className="rounded-full md:size-80 shadow-glow-fuchsia" />
           </div>
 
           <div className="flex flex-col w-full">
@@ -109,7 +109,11 @@ const Home = () => {
         <img src="./logo.jpg" alt="Syeda Hoorain ali" className="h-52 rounded-lg" />
 
         <p className="sm:text-lg text-center px-4 sm:px-16">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis corrupti soluta omnis minus excepturi, voluptates necessitatibus harum. Voluptate nulla earum ratione quod ipsam nihil? Tempore, eos error. Aliquid magnam ratione fuga non recusandae officiis, dolorem illum iste ad, velit nam! Itaque culpa doloribus libero eum explicabo molestiae voluptatibus officiis dolorum neque est nemo odio recusandae blanditiis magni nisi facilis illo, repellat, ipsa ad! Dolor illo fugit labore saepe nostrum praesentium maiores ullam, tempore, quos dolores voluptas officia eligendi nesciunt voluptatibus dicta odio harum vero laudantium explicabo? Quidem laudantium cum suscipit natus soluta facere sit ratione. Corrupti, voluptatum molestiae? Voluptatum, nisi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat iure magnam, ea molestiae cum quos, officia minima similique asperiores obcaecati veritatis distinctio vitae aperiam sed placeat dolorum quo. Dolor dignissimos voluptatem eius, reprehenderit obcaecati amet voluptate iste tempora quibusdam in explicabo, sit id velit accusantium modi sed distinctio, quidem ratione perferendis ducimus vitae architecto! Beatae aliquam consequatur ratione maxime! Aspernatur labore dolores itaque vel eveniet nihil non tempora quo ad, veritatis accusamus? Mollitia iste nesciunt alias ducimus earum neque facilis accusamus officia totam facere commodi consectetur assumenda, quae explicabo excepturi. Veniam animi cupiditate, ex ad distinctio nulla minus dolore, doloremque in repudiandae error cum at nihil earum non officia aut incidunt debitis facere consequuntur quae reprehenderit! Sed suscipit sapiente asperiores dicta ad eius quasi in consequatur, voluptates odit minus voluptatibus eaque reprehenderit ea id. Ab minus laboriosam quaerat rem soluta unde similique velit. Aperiam veniam, neque adipisci voluptatem perferendis beatae.
+          Hi! I&apos;m Hoorain, a 13-year-old tech enthusiast and a senior student at the Governor Sindh IT Initiative (GIAIC). I have a deep passion for web development and a keen interest in emerging technologies. My journey in the tech world has been both exciting and challenging, and I&apos;ve enjoyed every step of it.
+          <br /> <br />
+          I&apos;ve acquired skills in various programming languages and frameworks, including HTML, CSS, JavaScript, TypeScript, Node.js, Express, MongoDB, React, and Next.js. Currently, I am diving into Python to expand my programming repertoire. My goal is to become a Cloud Applied Gen-AI Engineer, and I am committed to continuously learning and evolving in the field of technology.
+          <br /> <br />
+          Beyond my technical skills, I am a creative problem solver and a team player who enjoys collaborating on projects. I believe in the power of innovation to transform the digital landscape and am excited to be a part of this dynamic industry. Explore my portfolio to see how I am applying my skills and passion to create impactful solutions.
         </p>
       </section>
     </Animate>
