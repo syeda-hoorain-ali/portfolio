@@ -11,15 +11,3 @@ body {
   top: 0;
   opacity: 0.8;
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .icons {
-    @apply size-9 sm:size-12 border-2 border-fuchsia-600 rounded-full flex justify-center items-center cursor-pointer hover:bg-fuchsia-600 hover:glow hover:-translate-y-2 transition
-  }
-  .glow {
-    box-shadow: 0 0 10px #dec1e2, 0 0 10px #dec1e2, 0 0 40px #dec1e2;
-  }
-}
