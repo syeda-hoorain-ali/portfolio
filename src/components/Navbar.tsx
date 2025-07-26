@@ -26,13 +26,13 @@ const Navbar = () => {
             <DisclosureButton className="group z-50 relative inline-flex items-center justify-center rounded-md p-1 bg-opacity-30 text-gray-400 hover:bg-fuchsia-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
-              <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
+              <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-open:hidden" />
+              <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-open:block" />
             </DisclosureButton>
           </div>
 
           <div className="flex flex-1 items-center justify-center sm:justify-between w-full">
-            <div className="flex flex-shrink-0 items-center">
+            <div className="flex shrink-0 items-center">
               <span className='text-xl sm:text-2xl md:text-3xl font-black text-fuchsia-500'>Hoorain ✨</span>
             </div>
 

@@ -1,5 +1,7 @@
+"use client";
+
 import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { JSX, useEffect, useRef } from "react";
 
 type Props = {
   children: JSX.Element;
@@ -7,7 +9,7 @@ type Props = {
 }
 
 const Animate = ({ children, width }: Props) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
   const slideControls = useAnimation();

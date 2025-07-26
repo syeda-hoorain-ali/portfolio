@@ -9,7 +9,7 @@ type Props = {
 const Card = ({ title, github, live, image }: Props) => {
   return (<>
     <div title={title} className="card relative bg-fuchsia-900 p-4 rounded-xl cursor-pointer transition overflow-hidden aspect-square">
-      <div className="overlay absolute -top-52 left-0 w-full h-full bg-gradient-to-b from-black via-black to-transparent opacity-0 transition-all">
+      <div className="overlay absolute -top-52 left-0 w-full h-full bg-linear-to-b from-black via-black to-transparent opacity-0 transition-all">
 
         <div className="h-full w-full grid grid-cols-1 grid-rows-2 p-4">
           <span className="text-3xl md:text-4xl text-center flex items-center justify-center">{title}</span>
