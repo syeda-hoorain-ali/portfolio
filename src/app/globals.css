@@ -1,15 +1,361 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+/* @import "tw-animate-css"; */
 
 @custom-variant dark (&:is(.dark *));
 
-body {
-  color: #ffffff;
+@custom-variant dark (&:is(.dark *));
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 430px;
+  --breakpoint-md: 770px;
+  --breakpoint-lg: 1030px;
+  --breakpoint-xl: 1450px;
+
+  --animate-meteor: meteor 5s linear infinite;
+  --animate-shine: shine var(--duration) infinite linear;
+
+  --background-image-gradient-radial: radial-gradient(
+    #ffffff11 1px,
+    #000000 1px
+  );
+
+  --shadow-glow-white: 0 0 10px #dec1e2, 0 0 10px #dec1e2, 0 0 40px #dec1e2;
+  --shadow-glow-fuchsia: 0 0 5px #e856ff, 0 0 10px #e856ff, 0 0 40px #e856ff;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 1;
+    }
+  }
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
 }
 
-.card:hover .overlay {
-  top: 0;
-  opacity: 0.8;
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 430px;
+  --breakpoint-md: 770px;
+  --breakpoint-lg: 1030px;
+  --breakpoint-xl: 1450px;
+
+  --animate-meteor: meteor 5s linear infinite;
+  --animate-shine: shine var(--duration) infinite linear;
+
+  --background-image-gradient-radial: radial-gradient(
+    #ffffff11 1px,
+    #000000 1px
+  );
+
+  --shadow-glow-white: 0 0 10px #dec1e2, 0 0 10px #dec1e2, 0 0 40px #dec1e2;
+  --shadow-glow-fuchsia: 0 0 5px #e856ff, 0 0 10px #e856ff, 0 0 40px #e856ff;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 1;
+    }
+  }
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+}
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 430px;
+  --breakpoint-md: 770px;
+  --breakpoint-lg: 1030px;
+  --breakpoint-xl: 1450px;
+
+  --animate-meteor: meteor 5s linear infinite;
+  --animate-shine: shine var(--duration) infinite linear;
+
+  --background-image-gradient-radial: radial-gradient(
+    #ffffff11 1px,
+    #000000 1px
+  );
+
+  --shadow-glow-white: 0 0 10px #dec1e2, 0 0 10px #dec1e2, 0 0 40px #dec1e2;
+  --shadow-glow-fuchsia: 0 0 5px #e856ff, 0 0 10px #e856ff, 0 0 40px #e856ff;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 1;
+    }
+  }
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+}
+
+@theme inline {
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility label {
+  @apply block text-sm font-semibold leading-6 text-gray-300;
+}
+
+@utility input {
+  @apply block w-full rounded-md border-0 px-3.5 py-2 text-gray-300 shadow-2xs ring-1 ring-inset ring-gray-600 bg-gray-900 focus:ring-2 focus:ring-inset focus:ring-fuchsia-600 sm:text-sm sm:leading-6;
+}
+
+@utility icons {
+  @apply size-9 sm:size-12 border-2 border-fuchsia-600 rounded-full flex justify-center items-center cursor-pointer hover:bg-fuchsia-600 hover:glow hover:-translate-y-2 transition;
+}
+
+@utility card-link {
+  &::before {
+    @apply content-[''] w-[0] h-px bg-white absolute bottom-0 left-1/2 transition-all duration-300;
+  }
+  &:hover::before {
+    @apply w-[110%] -left-[5%];
+  }
+}
+
+@utility glow {
+  box-shadow:
+    0 0 10px #dec1e2,
+    0 0 10px #dec1e2,
+    0 0 40px #dec1e2;
+}
+
+@utility card {
+  &:hover .overlay {
+    top: 0;
+    opacity: 0.8;
+  }
+}
+
+@utility overlay {
+  .card:hover & {
+    top: 0;
+    opacity: 0.8;
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
 @theme inline {
@@ -52,77 +398,98 @@ body {
 
 :root {
   --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.606 0.25 292.717);
-  --primary-foreground: oklch(0.969 0.016 293.756);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.606 0.25 292.717);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.606 0.25 292.717);
-  --sidebar-primary-foreground: oklch(0.969 0.016 293.756);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.606 0.25 292.717);
-}
+  --background: oklch(0.13 0.01 280);               /* Deep Cosmos Black */
+  --foreground: oklch(0.98 0.015 285);              /* Light text on dark */
 
-.dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.541 0.281 293.009);
-  --primary-foreground: oklch(0.969 0.016 293.756);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.541 0.281 293.009);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.541 0.281 293.009);
-  --sidebar-primary-foreground: oklch(0.969 0.016 293.756);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.541 0.281 293.009);
+  --card: oklch(0.18 0.02 282);                     /* Slightly lifted black */
+  --card-foreground: oklch(0.97 0.02 284);          /* Near white with a cool tint */
+
+  --popover: oklch(0.2 0.025 284);                  /* Similar to card but with glow */
+  --popover-foreground: oklch(0.97 0.02 284);
+
+  --primary: oklch(0.61 0.22 305);                  /* Cyber Fuchsia */
+  --primary-foreground: oklch(0.97 0.01 290);       /* Light text on primary */
+
+  --secondary: oklch(0.34 0.05 265);                /* Indigo/Violet mix */
+  --secondary-foreground: oklch(0.98 0.015 285);
+
+  --muted: oklch(0.22 0.015 275);                   /* Muted violet */
+  --muted-foreground: oklch(0.70 0.015 285);        /* Desaturated light purple */
+
+  --accent: oklch(0.45 0.19 278);                   /* Royal space blue */
+  --accent-foreground: oklch(0.98 0.01 284);
+
+  --destructive: oklch(0.65 0.22 27);               /* Warning red/orange */
+  --destructive-foreground: oklch(0.99 0.01 25);
+
+  --border: oklch(0.3 0.02 280 / 30%);              /* Subtle space-line border */
+  --input: oklch(0.3 0.02 280 / 25%);
+  --ring: oklch(0.61 0.22 305);                     /* Match primary */
+
+  /* Optional charts / data viz colors */
+  --chart-1: oklch(0.58 0.21 275);                  /* Violet core */
+  --chart-2: oklch(0.72 0.18 165);                  /* Light teal/cyan */
+  --chart-3: oklch(0.78 0.17 50);                   /* Yellow/amber */
+  --chart-4: oklch(0.63 0.25 300);                  /* Plasma pink */
+  --chart-5: oklch(0.62 0.22 20);                   /* Orange-red */
+
+  /* Sidebar components (same style system) */
+  --sidebar: oklch(0.18 0.02 282);
+  --sidebar-foreground: oklch(0.97 0.02 284);
+  --sidebar-primary: oklch(0.61 0.22 305);
+  --sidebar-primary-foreground: oklch(0.97 0.01 290);
+  --sidebar-accent: oklch(0.34 0.05 265);
+  --sidebar-accent-foreground: oklch(0.98 0.015 285);
+  --sidebar-border: oklch(0.3 0.02 280 / 30%);
+  --sidebar-ring: oklch(0.61 0.22 305);
 }
 
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --radius: 0.5rem;
+  }
+  .theme {
+    --animate-shine: shine var(--duration) infinite linear;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;

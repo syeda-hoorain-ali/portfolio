@@ -3,12 +3,12 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import { JSX, useEffect, useRef } from "react";
 
-type Props = {
-  children: JSX.Element;
+interface AnimateProps extends React.ComponentProps<"div"> {
+  // children: JSX.Element;
   width?: string;
 }
 
-const Animate = ({ children, width }: Props) => {
+const Animate = ({ children, width, ...props }: AnimateProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
   const mainControls = useAnimation();
@@ -22,7 +22,7 @@ const Animate = ({ children, width }: Props) => {
   }, [isInView]);
 
   return (<>
-    <div ref={ref} className="relative overflow-hidden" style={{ width }}>
+    <div {...props} ref={ref} className="relative overflow-hidden" style={{ width }}>
       <motion.div
         variants={{
           hidden: { opacity: 0, y: 25 },

@@ -1,84 +1,182 @@
 "use client";
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
-const Navbar = () => {
-  const pathname = usePathname();
+import { cn } from "@/lib/utils"; // Assuming you have a `cn` utility
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hash, setHash] = useState('');
+
+  // Effect to handle scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Effect to track URL hash for active link
+  useEffect(() => {
+    const updateHash = () => setHash(window.location.hash);
+    updateHash();
+    window.addEventListener('hashchange', updateHash);
+    return () => window.removeEventListener('hashchange', updateHash);
+  }, []);
+
+  // Effect to close mobile menu on navigation
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  }, [hash]);
 
   const navigation = [
-    { name: 'Home', href: '/', current: pathname === '/' },
-    { name: 'Contact', href: '/contact', current: pathname === '/contact' },
-    { name: 'About', href: '/about', current: pathname === '/about' },
-  ]
+    { name: "Home", href: "#", current: hash === "" || hash === "#" },
+    { name: "About", href: "#about", current: hash === "#about" },
+    { name: "Contact", href: "#contact", current: hash === "#contact" },
+  ];
 
-  function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-  }
+  // Animation variants for the scrolled navbar
+  const scrolledNavVariants = {
+    hidden: { y: -100, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { type: "spring", stiffness: 120, damping: 20 }
+    },
+    exit: { y: -100, opacity: 0 }
+  };
+
+  // Animation variants for the initial full-width navbar
+  const initialNavVariants = {
+    visible: { opacity: 1, transition: { duration: 0.2 } },
+    hidden: { opacity: 0, transition: { duration: 0.2 } }
+  };
 
   return (
-    <Disclosure as="nav" className="bg-black bg-opacity-90 flex justify-between w-full fixed shadow z-50">
-      <div className="mx-auto w-full px-2 sm:px-6 lg:px-20">
-        <div className="relative flex h-10 sm:h-20 items-center justify-between">
-          <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
-            {/* Mobile menu button*/}
-            <DisclosureButton className="group z-50 relative inline-flex items-center justify-center rounded-md p-1 bg-opacity-30 text-gray-400 hover:bg-fuchsia-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-              <span className="absolute -inset-0.5" />
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-open:hidden" />
-              <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-open:block" />
-            </DisclosureButton>
-          </div>
-
-          <div className="flex flex-1 items-center justify-center sm:justify-between w-full">
-            <div className="flex shrink-0 items-center">
-              <span className='text-xl sm:text-2xl md:text-3xl font-black text-fuchsia-500'>Hoorain ✨</span>
-            </div>
-
-            <div className="hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
-                    className={classNames(
-                      item.current ? 'bg-fuchsia-900 text-white' : 'text-gray-300 hover:bg-fuchsia-700 hover:text-white hover:bg-opacity-40',
-                      'rounded-md px-3 py-2 text-sm md:text-base font-medium',
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+    <>
+      <AnimatePresence>
+        {scrolled ? (
+          // Scrolled Navbar (Compact, Centered, Glassmorphism)
+          <motion.nav
+            key="scrolled-nav"
+            variants={scrolledNavVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-auto rounded-full border border-white/20 bg-black/60 shadow-lg backdrop-blur-lg"
+          >
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="relative flex h-12 items-center justify-center">
+                {/* Desktop Navigation */}
+                <div className="hidden sm:flex sm:items-center">
+                  <div className="flex space-x-1">
+                    {navigation.map((item) => (
+                      <Link key={item.name} href={item.href} /* ...props */ 
+                        aria-current={item.current ? "page" : undefined}
+                        className={cn(
+                          "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                          item.current
+                            ? "text-primary underline underline-offset-4 font-bold decoration-2"
+                            : "text-gray-300 hover:text-secondary-foreground"
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                {/* Mobile Menu Button */}
+                <div className="flex items-center sm:hidden">
+                  <button onClick={() => setIsMenuOpen(!isMenuOpen)} /* ...props */>
+                    {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.nav>
+        ) : (
+          // Initial Full-Width Navbar
+          <motion.nav
+            key="initial-nav"
+            variants={initialNavVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            className="fixed top-0 left-0 z-50 w-full bg-black/90"
+          >
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="relative flex h-16 items-center justify-between">
+                {/* Logo */}
+                <div className="flex flex-shrink-0 items-center">
+                  <Link href="#" className="text-2xl font-black text-primary">
+                    Hoorain ✨
+                  </Link>
+                </div>
+                {/* Desktop Navigation */}
+                <div className="hidden sm:ml-6 sm:flex sm:items-center">
+                  <div className="flex space-x-1">
+                    {navigation.map((item) => (
+                       <Link key={item.name} href={item.href} /* ...props */ 
+                        aria-current={item.current ? "page" : undefined}
+                        className={cn(
+                          "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                          item.current
+                            ? "text-primary underline underline-offset-4 font-bold decoration-2"
+                            : "text-gray-300 hover:text-secondary-foreground"
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                {/* Mobile Menu Button */}
+                <div className="flex items-center sm:hidden">
+                  <button onClick={() => setIsMenuOpen(!isMenuOpen)} /* ...props */>
+                    {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
 
-        </div>
-      </div>
-
-      <DisclosurePanel transition className="sm:hidden h-96 inline-block absolute transition">
-        <div className="absolute left-0 top-0 space-y-1 w-screen h-screen pl-5 pr-20 py-10 bg-black">
-          {navigation.map((item) => (
-            <DisclosureButton
-              key={item.name}
-              as={Link}
-              href={item.href}
-              aria-current={item.current ? 'page' : undefined}
-              className={classNames(
-                item.current ? 'bg-fuchsia-400 text-white' : 'text-gray-300 hover:bg-fuchsia-800 hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium',
-              )}
-            >
-              {item.name}
-            </DisclosureButton>
-          ))}
-        </div>
-      </DisclosurePanel>
-    </Disclosure>
-  )
+      {/* Mobile Menu Panel - Unchanged but works with the new setup */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }} 
+            className="fixed top-16 left-0 z-40 w-full sm:hidden"
+          >
+            <div className="space-y-1 bg-black/90 backdrop-blur-lg px-2 pb-3 pt-2 shadow-lg">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={cn(
+                    "block rounded-md px-3 py-2 text-base font-medium transition-colors",
+                    item.current
+                      ? "text-primary underline underline-offset-4 font-bold decoration-2"
+                      : "text-gray-300 hover:text-secondary-foreground"
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
-
-export default Navbar;
-

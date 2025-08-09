@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { CgNpm } from "react-icons/cg";
-import { FaGithub, FaGlobe, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaGlobe, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 
 const Footer = () => {
@@ -8,18 +9,18 @@ const Footer = () => {
       <p className="text-xs md:text-base">&copy; Syeda Hoorain Ali, Inc. All rights reserved.</p>
 
       <div className="flex gap-6 items-center">
-        <a href="https://github.com/syeda-hoorain-ali">
+        <Link href="https://github.com/syeda-hoorain-ali">
           <FaGithub className="size-5 md:size-8" />
-        </a>
-        <a href="https://www.linkedin.com/in/syedahoorainali">
+        </Link>
+        <Link href="https://www.linkedin.com/in/syedahoorainali">
           <FaLinkedin className="size-5 md:size-8" />
-        </a>
-        <a href="https://www.npmjs.com/~syedahoorainali">
-          <CgNpm className="size-6 md:size-8" />
-        </a>
-        <a href="/">
+        </Link>
+        <Link href="https://x.com/syedahorainali">
+          <FaXTwitter className="size-6 md:size-8" />
+        </Link>
+        <Link href="/">
           <FaGlobe className="size-5 md:size-6" />
-        </a>
+        </Link>
 
       </div>
     </div>

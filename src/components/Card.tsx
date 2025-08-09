@@ -1,31 +1,88 @@
+"use client"
 
-type Props = {
+import Image from "next/image";
+import Link from "next/link";
+import { HiOutlineExternalLink } from "react-icons/hi";
+import { ShineBorder } from "./magicui/shine-border";
+// import Tilt from "react-parallax-tilt";
+import { motion } from "framer-motion";
+
+export type CardProps = {
   title: string;
-  github: string;
   live: string;
-  image?: string;
-}
+  github: string;
+  image: string;
+  labels: string[];
+  description: string;
+};
 
-const Card = ({ title, github, live, image }: Props) => {
-  return (<>
-    <div title={title} className="card relative bg-fuchsia-900 p-4 rounded-xl cursor-pointer transition overflow-hidden aspect-square">
-      <div className="overlay absolute -top-52 left-0 w-full h-full bg-linear-to-b from-black via-black to-transparent opacity-0 transition-all">
+const Card = ({ title, github, live, image, labels, description }: CardProps) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      {/* <Tilt
+        glareEnable={true}
+        glareMaxOpacity={0.1}
+        glareColor="#f0abfc"
+        glarePosition="all"
+        scale={1.01}
+        transitionSpeed={1500}
+      > */}
+        <div className="relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl shadow-lg overflow-hidden p-4 transition-all duration-300 hover:shadow-fuchsia-500/40 hover:border-fuchsia-400 group">
+          <ShineBorder shineColor={["#f0abfc", "#FE8FB5", "#FFBE7B"]} />
 
-        <div className="h-full w-full grid grid-cols-1 grid-rows-2 p-4">
-          <span className="text-3xl md:text-4xl text-center flex items-center justify-center">{title}</span>
-          <div className="flex gap-5 items-center justify-center">
-            <a href={live} className="md:text-lg border-2 border-fuchsia-600 px-3 sm:px-4 md:px-5 py-1 md:py-2 rounded-full transition-all hover:bg-fuchsia-600 hover:shadow-glow-fuchsia hover:border-fuchsia-300">Live</a>
+          <div className="w-full aspect-video overflow-hidden bg-slate-800 border border-white/10 rounded-xl flex items-center justify-center">
+            <Image
+              width={300}
+              height={135}
+              src={image}
+              alt={title}
+              title={title}
+              className="object-cover w-full h-full rounded-lg group-hover:scale-105 transition"
+            />
+          </div>
 
-            <a href={github} className="md:text-lg border-2 border-fuchsia-600 px-3 sm:px-4 md:px-5 py-1 md:py-2 rounded-full transition-all hover:bg-fuchsia-600 hover:shadow-glow-fuchsia hover:border-fuchsia-300">Code</a>
+          <div className="content mt-4">
+            <h4 className="text-lg font-semibold text-white">{title}</h4>
+
+            <p className="text-sm text-gray-300 mt-1">{description}</p>
+
+            <div className="flex flex-wrap mt-3 gap-2">
+              {labels.map(label => (
+                <span
+                  key={label}
+                  className="text-xs bg-white/10 border border-white/20 px-3 py-1 rounded-full text-fuchsia-200 backdrop-blur-md"
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-4 flex gap-6">
+              <Link
+                className="flex gap-1 items-center text-fuchsia-300 hover:underline hover:text-white transition"
+                target="_blank"
+                href={live}
+              >
+                Live <HiOutlineExternalLink />
+              </Link>
+              <Link
+                className="flex gap-1 items-center text-fuchsia-300 hover:underline hover:text-white transition"
+                target="_blank"
+                href={github}
+              >
+                Code <HiOutlineExternalLink />
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="w-full h-full py-4 bg-slate-800 rounded-lg flex items-center justify-center">
-        <img src={image} alt={title} className="h-full rounded-xl" />
-      </div>
-    </div>
-  </>)
-}
+      {/* </Tilt> */}
+    </motion.div>
+  );
+};
 
 export default Card;
