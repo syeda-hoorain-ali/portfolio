@@ -110,9 +110,26 @@ export async function GET() {
       }
     };
 
-    return NextResponse.json(dynamicPortfolioData);
+    return NextResponse.json(dynamicPortfolioData, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+    });
+
   } catch (error) {
     console.error('Error in /api/me route:', error);
-    return NextResponse.json(portfolioData, { status: 500 });
+    return NextResponse.json(portfolioData, {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+    });
   }
 }
