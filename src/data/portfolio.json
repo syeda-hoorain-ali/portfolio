@@ -1,0 +1,155 @@
+{
+  "personal": {
+    "name": "Syeda Hoorain Ali",
+    "title": "Full Stack Web Developer & Agentic AI Engineer",
+    "tagline": "Architecting Intelligence, One Agent at a Time",
+    "email": "syedahoorainali8@gmail.com",
+    "location": "Karachi, Pakistan",
+    "bio": "I'm a passionate Full Stack Developer specializing in building intelligent, scalable web applications. With expertise in modern web technologies and AI agent development, I create solutions that bridge the gap between elegant user experiences and cutting-edge artificial intelligence.",
+    "resumeUrl": "/resume.pdf",
+    "avatar": "https://avatars.githubusercontent.com/u/156098367"
+  },
+  "social": {
+    "github": "https://github.com/syeda-hoorain-ali",
+    "linkedin": "https://www.linkedin.com/in/syedahoorainali/",
+    "twitter": "https://x.com/syedahorainali",
+    "instagram": "https://www.instagram.com/syeda_hoorain_ali/",
+    "facebook": "https://www.facebook.com/syedahoorainali6",
+    "medium": "https://medium.com/@syedahoorainali",
+    "discord": "https://discord.gg/kYRBQTsqRB"
+  },
+  "skills": {
+    "frontend": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "backend": [
+      "Node.js",
+      "Python",
+      "FastAPI"
+    ],
+    "ai": [
+      "OpenAI Agents SDK",
+      "OpenAI Chatkit",
+      "RAG Systems",
+      "Vector Databases",
+      "Qdrant"
+    ],
+    "databases": [
+      "MongoDB",
+      "Supabase",
+      "NeonDB",
+      "PostgreSQL"
+    ],
+    "tools": [
+      "Stripe",
+      "Clerk",
+      "Sanity",
+      "Cloudinary",
+      "Resend"
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Physical AI Textbook",
+      "description": "An interactive textbook on Physical AI & Humanoid Robotics with an embedded RAG-powered AI agent. Built with Docusaurus, the agent can answer questions about the entire textbook content using advanced retrieval systems.",
+      "image": "https://repository-images.githubusercontent.com/1105843458/5b28289f-0164-4f23-ad5d-d35f6fb4c6cb",
+      "tech": [
+        "Docusaurus",
+        "Python",
+        "FastAPI",
+        "Qdrant",
+        "NeonDB",
+        "OpenAI Agents SDK"
+      ],
+      "github": "https://github.com/syeda-hoorain-ali/physical-ai",
+      "demo": "https://syeda-hoorain-ali.github.io/physical-ai",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "ElevateCV",
+      "description": "A modern, responsive resume builder application with intuitive interface and customizable templates. Features user authentication, cloud storage, and premium templates with Stripe integration.",
+      "image": "https://opengraph.githubassets.com/100/syeda-hoorain-ali/elevatecv",
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "MongoDB",
+        "NextAuth",
+        "Stripe"
+      ],
+      "github": "https://github.com/syeda-hoorain-ali/elevatecv",
+      "demo": "https://elevate-cv.vercel.app",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "DevBits",
+      "description": "A comprehensive blogging platform offering tutorials and articles on web development topics including HTML, CSS, JavaScript, TypeScript, React, and more.",
+      "image": "https://opengraph.githubassets.com/100/syeda-hoorain-ali/devbits",
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "MongoDB",
+        "Firebase"
+      ],
+      "github": "https://github.com/syeda-hoorain-ali/devbits",
+      "demo": "https://devbits.vercel.app",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "title": "Nike E-Commerce",
+      "description": "Full-featured e-commerce platform built during a hackathon. Includes product management, cart functionality, authentication, payment processing, and shipping integration.",
+      "image": "https://opengraph.githubassets.com/100/syeda-hoorain-ali/nike",
+      "tech": [
+        "Next.js",
+        "Sanity",
+        "Clerk",
+        "Stripe",
+        "ShipEngine",
+        "Resend"
+      ],
+      "github": "https://github.com/syeda-hoorain-ali/nike",
+      "demo": "https://ui-nike.vercel.app",
+      "featured": false
+    }
+  ],
+  "achievements": [
+    {
+      "id": 1,
+      "title": "100 Days Coding Challenge",
+      "description": "Completed an intensive 100-day coding challenge covering JavaScript, TypeScript, React, Next.js, and building real-world projects including a Next.js admin dashboard.",
+      "icon": "trophy",
+      "link": "https://github.com/syeda-hoorain-ali/100-days-coding-challenge",
+      "organizerPost": "https://asharibali.medium.com/transform-your-skills-with-the-100-days-of-coding-challenge-58924a9c6c2f"
+    },
+    {
+      "id": 2,
+      "title": "Ramadan Coding Nights Challenge",
+      "description": "Participated in Ramadan Coding Nights, building projects from simple CLI todos to advanced AI agents using Python and its libraries.",
+      "icon": "code",
+      "link": "https://github.com/syeda-hoorain-ali/ramzan-coding-nights",
+      "organizerPost": "https://github.com/AsharibAli/ramadan-coding-nights"
+    },
+    {
+      "id": 3,
+      "title": "3 Hackathons Participated",
+      "description": "Successfully participated in 3 competitive hackathons, building full-stack applications under time constraints and collaborating with teams.",
+      "icon": "users"
+    }
+  ],
+  "stats": {
+    "projects": 10,
+    "hackathons": 3,
+    "daysCoded": 100,
+    "contributions": 500
+  }
+}

@@ -1,0 +1,61 @@
+// import { NextResponse } from "next/server"
+// import portfolioData from '@/data/portfolio.json';
+
+// export async function GET() {
+//     const projects = portfolioData.projects.map(item => {
+//         // const username = item.github.split('/')[3]
+//         // const repo = item.github.split('/')[4]
+//         // console.log(a)
+//     })
+
+//     const projectUrl = portfolioData.projects[1].github  
+
+
+
+//     try {
+//         const response = await fetch(projectUrl);
+//         const reader = response.body.getReader();
+//         const decoder = new TextDecoder();
+//         let buffer = '';
+//         let ogImageUrl = '';
+//         let foundOgImage = false;
+
+//         while (!foundOgImage) {
+//             const { done, value } = await reader.read();
+
+//             if (done) break;
+
+//             buffer += decoder.decode(value, { stream: true });
+
+//             // Look for the og:image meta tag
+//             const ogImageMatch = buffer.match(/<meta[^>]*property=["']og:image["'][^>]*content=["']([^"']*)["']/i);
+//             if (ogImageMatch) {
+//                 ogImageUrl = ogImageMatch[1]; // Extract the content attribute value
+//                 foundOgImage = true;
+
+//                 // Cancel the rest of the stream since we have what we need
+//                 reader.cancel();
+//             }
+
+//             // Prevent buffer from growing too large if og:image tag isn't found
+//             if (buffer.length > 50000) { // 50KB limit
+//                 break;
+//             }
+//         }
+
+//         console.log('Open Graph Image URL:', ogImageUrl);
+
+//         return NextResponse.json({
+//             message: 'Hello World',
+//             ogImageUrl
+//         });
+//     } catch (error) {
+//         console.error('Error fetching Open Graph image:', error);
+
+//         return NextResponse.json({
+//             message: 'Error occurred while fetching Open Graph image',
+//             ogImageUrl: ''
+//         }, { status: 500 });
+//     }
+// }
+

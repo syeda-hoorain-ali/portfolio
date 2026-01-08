@@ -1,19 +1,17 @@
 import Link from "next/link";
 
 const NotFound = () => {
-  return (<>
-    <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-muted">
       <div className="text-center">
-        <p className="text-base font-semibold text-fuchsia-600">404</p>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">Page not found</h1>
-        <p className="mt-6 text-base leading-7 text-gray-300">Sorry, we couldn&apos;t find the page you&apos;re looking for.</p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <Link href="/" className="rounded-md bg-fuchsia-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-fuchsia-500 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-600">Go back home</Link>
-          <Link href="/contact" className="text-sm font-semibold text-white">Contact support <span aria-hidden="true">&rarr;</span></Link>
-        </div>
+        <h1 className="mb-4 text-4xl font-bold">404</h1>
+        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
+        <Link href="/" className="text-primary underline hover:text-primary/90">
+          Return to Home
+        </Link>
       </div>
-    </main>
-  </>)
-}
+    </div>
+  );
+};
 
 export default NotFound;
