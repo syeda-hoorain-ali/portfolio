@@ -101,9 +101,19 @@ export async function GET() {
   try {
     const githubStats = await fetchGitHubStats();
 
-    // Merge the static portfolio data with dynamic GitHub stats
+    // Replace localhost URLs with environment variable base URL
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+
+    // Update project image URLs to use the base URL
+    const updatedProjects = portfolioData.projects.map(project => ({
+      ...project,
+      image: project.image.replace('http://localhost:3000', baseUrl)
+    }));
+
+    // Merge the static portfolio data with dynamic GitHub stats and updated URLs
     const dynamicPortfolioData = {
       ...portfolioData,
+      projects: updatedProjects,
       stats: {
         ...portfolioData.stats,
         ...githubStats
@@ -122,12 +132,23 @@ export async function GET() {
 
   } catch (error) {
     console.error('Error in /api/me route:', error);
-    return NextResponse.json(portfolioData, {
+    // Also update URLs in error case
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const errorProjects = portfolioData.projects.map(project => ({
+      ...project,
+      image: project.image.replace('http://localhost:3000', baseUrl)
+    }));
+
+    const errorPortfolioData = {
+      ...portfolioData,
+      projects: errorProjects
+    };
+
+    return NextResponse.json(errorPortfolioData, {
       status: 500,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
     });

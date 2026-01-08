@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Code, Users, ExternalLink, ChevronDown } from 'lucide-react';
+import { Trophy, Code, Users, ExternalLink, ChevronDown, Loader2 } from 'lucide-react';
 import { MagicCard } from '@/components/magic-ui/magic-card';
 import { usePortfolioData } from '@/hooks/usePortfolioData';
 import { AchievementData } from '@/types/portfolio';
+import { cn } from '@/lib/utils';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   trophy: Trophy,
@@ -18,6 +19,7 @@ const AchievementCard = (
 ) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const Icon = iconMap[achievement.icon] || Trophy;
+  const hasLinks = achievement.link || achievement.organizerPost;
 
   return (
     <motion.div
@@ -27,7 +29,12 @@ const AchievementCard = (
       transition={{ delay: index * 0.15, duration: 0.5 }}
     >
       <MagicCard className="p-6">
-        <div className="flex items-start gap-4">
+        <div
+          className={cn("flex items-start gap-4",  hasLinks && "cursor-pointer" )}
+          onClick={() => {
+            setIsExpanded(!isExpanded)
+          }}
+        >
           <div className="p-3 rounded-xl bg-primary/10 text-primary shrink-0">
             <Icon className="w-6 h-6" />
           </div>
@@ -37,21 +44,28 @@ const AchievementCard = (
               <h3 className="text-lg font-bold text-foreground">
                 {achievement.title}
               </h3>
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="p-1 rounded-full hover:bg-muted transition-colors"
-              >
-                <motion.div
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
+              {hasLinks && (
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="p-1 rounded-full hover:bg-muted transition-colors cursor-pointer"
+                  aria-label={isExpanded ? 'Collapse' : 'Expand'}
                 >
-                  <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                </motion.div>
-              </button>
+                  <motion.div
+                    animate={{ rotate: isExpanded ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                  </motion.div>
+                </button>
+              )}
             </div>
 
+            <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+              {achievement.description}
+            </p>
+
             <AnimatePresence>
-              {isExpanded && (
+              {isExpanded && hasLinks && (
                 <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
@@ -59,10 +73,6 @@ const AchievementCard = (
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
-                    {achievement.description}
-                  </p>
-
                   <div className="flex flex-wrap gap-3 mt-4">
                     {achievement.link && (
                       <a
@@ -90,12 +100,6 @@ const AchievementCard = (
                 </motion.div>
               )}
             </AnimatePresence>
-
-            {!isExpanded && (
-              <p className="text-muted-foreground mt-2 text-sm line-clamp-2">
-                {achievement.description}
-              </p>
-            )}
           </div>
         </div>
       </MagicCard>
@@ -104,14 +108,14 @@ const AchievementCard = (
 };
 
 export const Achievements = () => {
-  const { data: portfolioData, isLoading, error } = usePortfolioData();
+  const { data: portfolioData, isLoading } = usePortfolioData();
 
-  if (isLoading) {
-    return <div className="py-24 px-4"><div className="max-w-4xl mx-auto">Loading...</div></div>;
-  }
-
-  if (error || !portfolioData) {
-    return <div className="py-24 px-4"><div className="max-w-4xl mx-auto">Error loading data</div></div>;
+  if (isLoading || !portfolioData) {
+    return (
+      <section id="achievements" className="py-24 px-4 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </section>
+    );
   }
 
   return (
@@ -134,7 +138,7 @@ export const Achievements = () => {
 
         {/* Achievement Cards */}
         <div className="space-y-6">
-          {portfolioData.achievements.map((achievement: { id: number; title: string; description: string; icon: string; link?: string; organizerPost?: string; }, index) => (
+          {portfolioData.achievements.map((achievement, index) => (
             <AchievementCard
               key={achievement.id}
               achievement={achievement}

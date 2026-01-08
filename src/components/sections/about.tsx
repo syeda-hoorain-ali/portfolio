@@ -1,21 +1,21 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { MapPin, Mail, FileDown } from 'lucide-react';
+import { MapPin, Mail, FileDown, Loader2 } from 'lucide-react';
 import { NumberTicker } from '@/components/magic-ui/number-ticker';
 import { MagicCard } from '@/components/magic-ui/magic-card';
 import { ShinyButton } from '@/components/magic-ui/shiny-button';
 import { usePortfolioData } from '@/hooks/usePortfolioData';
 
 export const About = () => {
-  const { data: portfolioData, isLoading, error } = usePortfolioData();
+  const { data: portfolioData, isLoading } = usePortfolioData();
 
-  if (isLoading) {
-    return <div className="py-24 px-4"><div className="max-w-6xl mx-auto">Loading...</div></div>;
-  }
-
-  if (error || !portfolioData) {
-    return <div className="py-24 px-4"><div className="max-w-6xl mx-auto">Error loading data</div></div>;
+  if (isLoading || !portfolioData) {
+    return (
+      <section className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </section>
+    )
   }
 
   const stats = [

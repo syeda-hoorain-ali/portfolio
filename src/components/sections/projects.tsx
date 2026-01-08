@@ -1,19 +1,121 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, Star } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
+import { Github, ExternalLink, Star, Loader2 } from 'lucide-react';
+
 import { MagicCard } from '@/components/magic-ui/magic-card';
 import { ShinyButton } from '@/components/magic-ui/shiny-button';
 import { usePortfolioData } from '@/hooks/usePortfolioData';
 import { ProjectData } from '@/types/portfolio';
 
-const ProjectCard = ({
-  project,
-  index,
-}: {
-  project: ProjectData;
-  index: number;
-}) => (
+const TechStack = ({ tech }: { tech: string[] }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
+  const [visibleCount, setVisibleCount] = useState(tech.length);
+
+  useEffect(() => {
+    const calculateVisibleItems = () => {
+      const container = containerRef.current;
+      const measureContainer = measureRef.current;
+      if (!container || !measureContainer) return;
+
+      const containerWidth = container.offsetWidth;
+      const gap = 8;
+      const maxRows = 2;
+
+      const pillElements = measureContainer.children;
+      const pillWidths: number[] = [];
+      for (let i = 0; i < pillElements.length; i++) {
+        pillWidths.push((pillElements[i] as HTMLElement).offsetWidth);
+      }
+
+      let currentRowWidth = 0;
+      let currentRow = 1;
+      let count = 0;
+      const plusBadgeWidth = 32;
+
+      for (let i = 0; i < tech.length; i++) {
+        const pillWidth = pillWidths[i] || 60;
+        const widthNeeded = pillWidth + (currentRowWidth > 0 ? gap : 0);
+
+        const remainingItems = tech.length - (i + 1);
+        const isLastFitting = remainingItems > 0;
+        const availableWidth = isLastFitting ? containerWidth - plusBadgeWidth - gap : containerWidth;
+
+        if (currentRowWidth + widthNeeded <= availableWidth) {
+          currentRowWidth += widthNeeded;
+          count++;
+        } else if (currentRow < maxRows) {
+          currentRow++;
+          currentRowWidth = pillWidth;
+          count++;
+        } else {
+          break;
+        }
+      }
+
+      setVisibleCount(Math.max(1, count));
+    };
+
+    calculateVisibleItems();
+
+    const resizeObserver = new ResizeObserver(() => {
+      requestAnimationFrame(calculateVisibleItems);
+    });
+
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    window.addEventListener('resize', calculateVisibleItems);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', calculateVisibleItems);
+    };
+  }, [tech]);
+
+  const visibleTech = tech.slice(0, visibleCount);
+  const hiddenCount = tech.length - visibleCount;
+
+  return (<>
+    <div
+      ref={measureRef}
+      className="flex flex-wrap gap-2 absolute opacity-0 pointer-events-none"
+      aria-hidden="true"
+    >
+      {tech.map((t) => (
+        <span
+          key={t}
+          className="px-2 py-1 rounded-md bg-muted/50 text-xs font-mono text-muted-foreground whitespace-nowrap"
+        >
+          {t}
+        </span>
+      ))}
+    </div>
+
+    <div ref={containerRef} className="flex flex-wrap gap-2 mb-6">
+      {visibleTech.map((t) => (
+        <span
+          key={t}
+          className="px-2 py-1 rounded-md bg-muted/50 text-xs font-mono text-muted-foreground whitespace-nowrap"
+        >
+          {t}
+        </span>
+      ))}
+      {hiddenCount > 0 && (
+        <span className="px-2 py-1 rounded-md bg-muted/50 text-xs font-mono text-muted-foreground whitespace-nowrap">
+          +{hiddenCount}
+        </span>
+      )}
+    </div>
+  </>);
+};
+
+const ProjectCard = (
+  { project, index, }: { project: ProjectData; index: number; }
+) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -21,10 +123,9 @@ const ProjectCard = ({
     transition={{ delay: index * 0.1, duration: 0.5 }}
   >
     <MagicCard
-      className="h-full overflow-hidden group ::before [&:before]:z-40"
+      className="h-full overflow-hidden group"
       gradientColor={project.featured ? 'var(--primary)' : 'var(--secondary)'}
     >
-      {/* Project Image */}
       <div className="relative h-48 overflow-hidden">
         <img
           src={project.image}
@@ -51,23 +152,8 @@ const ProjectCard = ({
         </p>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tech.slice(0, 5).map((tech) => (
-            <span
-              key={tech}
-              className="px-2 py-1 rounded-md bg-muted/50 text-xs font-mono text-muted-foreground"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.tech.length > 5 && (
-            <span className="px-2 py-1 rounded-md bg-muted/50 text-xs font-mono text-muted-foreground">
-              +{project.tech.length - 5}
-            </span>
-          )}
-        </div>
+        <TechStack tech={project.tech} />
 
-        {/* Actions */}
         <div className="flex gap-3">
           <ShinyButton
             variant="ghost"
@@ -92,14 +178,14 @@ const ProjectCard = ({
 );
 
 export const Projects = () => {
-  const { data: portfolioData, isLoading, error } = usePortfolioData();
+  const { data: portfolioData, isLoading } = usePortfolioData();
 
-  if (isLoading) {
-    return <div className="py-24 px-4"><div className="max-w-6xl mx-auto">Loading...</div></div>;
-  }
-
-  if (error || !portfolioData) {
-    return <div className="py-24 px-4"><div className="max-w-6xl mx-auto">Error loading data</div></div>;
+  if (isLoading || !portfolioData) {
+    return (
+      <section id="projects" className="py-24 px-4 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </section>
+    );
   }
 
   const featuredProjects = portfolioData.projects.filter((p) => p.featured);

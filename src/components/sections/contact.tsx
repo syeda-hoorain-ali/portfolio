@@ -1,21 +1,21 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Mail, MessageCircle, FileDown, Github, Linkedin, Twitter, Instagram, Facebook, BookOpen, Copy, Check } from 'lucide-react';
+import { Mail, MessageCircle, FileDown, Github, Linkedin, Twitter, Instagram, Facebook, BookOpen, Copy, Check, Loader2 } from 'lucide-react';
 import { ShinyButton } from '@/components/magic-ui/shiny-button';
 import { useState } from 'react';
 import { usePortfolioData } from '@/hooks/usePortfolioData';
 
 export const Contact = () => {
-  const { data: portfolioData, isLoading, error } = usePortfolioData();
+  const { data: portfolioData, isLoading } = usePortfolioData();
   const [copied, setCopied] = useState(false);
 
-  if (isLoading) {
-    return <div className="py-24 px-4"><div className="max-w-4xl mx-auto">Loading...</div></div>;
-  }
-
-  if (error || !portfolioData) {
-    return <div className="py-24 px-4"><div className="max-w-4xl mx-auto">Error loading data</div></div>;
+  if (isLoading || !portfolioData) {
+    return (
+      <section className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </section>
+    )
   }
 
   const socialLinks = [
@@ -70,7 +70,7 @@ export const Contact = () => {
               className="w-full sm:w-auto"
             >
               <MessageCircle className="w-5 h-5" />
-              Discord
+              Join Discord
             </ShinyButton>
           </a>
 
@@ -92,7 +92,8 @@ export const Contact = () => {
                   <Copy className="w-4 h-4 ml-1" />
                 </>
               )}
-            </ShinyButton></a>
+            </ShinyButton>
+          </a>
 
           <a href={portfolioData.personal.resumeUrl} download>
             <ShinyButton variant="ghost" className="w-full sm:w-auto">

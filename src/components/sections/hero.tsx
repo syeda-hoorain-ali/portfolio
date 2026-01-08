@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Instagram, Facebook, BookOpen, ChevronDown, MessageCircle } from 'lucide-react';
+import { Github, Linkedin, Twitter, Instagram, Facebook, BookOpen, ChevronDown, MessageCircle, Loader2 } from 'lucide-react';
 import { TypingAnimation } from '@/components/magic-ui/typing-animation';
 import { usePortfolioData } from '@/hooks/usePortfolioData';
 
@@ -14,12 +14,12 @@ const taglines = [
 export const Hero = () => {
   const { data: portfolioData, isLoading, error } = usePortfolioData();
 
-  if (isLoading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-  }
-
-  if (error || !portfolioData) {
-    return <div className="min-h-screen flex items-center justify-center">Error loading data</div>;
+  if (isLoading || !portfolioData) {
+    return (
+      <section className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </section>
+    )
   }
 
   const socialIcons = [
@@ -114,15 +114,17 @@ export const Hero = () => {
             </motion.a>
           ))}
           <div className="w-px h-8 bg-border mx-2" />
-          <motion.button
+          <motion.a
+            href={portfolioData.social.discord}
+            target="_blank"
+            rel="noopener noreferrer"
             className="p-3 rounded-xl hover:bg-secondary/20 transition-all duration-300 group"
             whileHover={{ scale: 1.2, y: -5 }}
             whileTap={{ scale: 0.9 }}
-            onClick={() => navigator.clipboard.writeText(portfolioData.social.discord)}
-            aria-label="Copy Discord"
+            aria-label="Discord"
           >
             <MessageCircle className="w-5 h-5 text-muted-foreground group-hover:text-secondary transition-colors" />
-          </motion.button>
+          </motion.a>
         </motion.div>
       </motion.div>
 

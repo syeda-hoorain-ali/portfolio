@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Marquee } from '@/components/magic-ui/marquee';
 import { usePortfolioData } from '@/hooks/usePortfolioData';
+import { Loader2 } from 'lucide-react';
 
 const SkillPill = ({ skill, index }: { skill: string; index: number }) => (
   <motion.div
@@ -11,7 +12,7 @@ const SkillPill = ({ skill, index }: { skill: string; index: number }) => (
     viewport={{ once: true }}
     transition={{ delay: index * 0.05 }}
     whileHover={{ scale: 1.1, y: -2 }}
-    className="px-4 py-2 rounded-full glass glow-border text-sm font-medium text-foreground whitespace-nowrap cursor-default"
+    className="mx-2 px-4 py-2 rounded-full glass glow-border text-sm font-medium text-foreground whitespace-nowrap cursor-default"
   >
     {skill}
   </motion.div>
@@ -47,14 +48,14 @@ const SkillCategory = ({
 );
 
 export const Skills = () => {
-  const { data: portfolioData, isLoading, error } = usePortfolioData();
+  const { data: portfolioData, isLoading } = usePortfolioData();
 
-  if (isLoading) {
-    return <div className="py-24 px-4"><div className="max-w-6xl mx-auto">Loading...</div></div>;
-  }
-
-  if (error || !portfolioData) {
-    return <div className="py-24 px-4"><div className="max-w-6xl mx-auto">Error loading data</div></div>;
+  if (isLoading || !portfolioData) {
+    return (
+      <section className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </section>
+    )
   }
 
   const allSkills = [
@@ -87,7 +88,7 @@ export const Skills = () => {
         </motion.div>
 
         {/* Skill Marquee */}
-        <div className="relative mb-16 -mx-4">
+        <div className="mb-16 -mx-4">
           <Marquee className="py-4" speed="slow">
             {allSkills.map((skill, index) => (
               <SkillPill key={skill} skill={skill} index={index} />
