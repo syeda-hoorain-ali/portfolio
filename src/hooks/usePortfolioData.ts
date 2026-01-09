@@ -1,7 +1,7 @@
 import { PortfolioData } from '@/types/portfolio';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchPortfolioData = async (): Promise<PortfolioData> => {
+export const fetchPortfolioData = async (): Promise<PortfolioData> => {
   const response = await fetch('/api/me');
 
   if (!response.ok) {

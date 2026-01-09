@@ -15,6 +15,8 @@ const jetBrainsMono = JetBrains_Mono({
   fallback: ["monospace"],
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+
 export const metadata: Metadata = {
   title: "Syeda Hoorain Ali | Full Stack Developer & AI Engineer",
   description: "Full Stack Web Developer & Agentic AI Engineer specializing in building intelligent, scalable web applications. Expert in React, Next.js, TypeScript, Python, and AI agent development.",
@@ -26,13 +28,13 @@ export const metadata: Metadata = {
     type: "website",
     title: "Syeda Hoorain Ali | Full Stack Developer & AI Engineer",
     description: "Architecting Intelligence, One Agent at a Time. Full Stack Web Developer & Agentic AI Engineer.",
-    images: []
+    images: `${baseUrl}/assets/open-graph-image.png`,
   },
   twitter: {
     card: "summary_large_image",
     title: "Syeda Hoorain Ali | Full Stack Developer & AI Engineer",
     description: "Architecting Intelligence, One Agent at a Time. Full Stack Web Developer & Agentic AI Engineer.",
-    images: []
+    images: `${baseUrl}/assets/open-graph-image.png`,
   },
 };
 

@@ -8,6 +8,7 @@ import { MagicCard } from '@/components/magic-ui/magic-card';
 import { ShinyButton } from '@/components/magic-ui/shiny-button';
 import { usePortfolioData } from '@/hooks/usePortfolioData';
 import { ProjectData } from '@/types/portfolio';
+import Image from 'next/image';
 
 const TechStack = ({ tech }: { tech: string[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -127,9 +128,11 @@ const ProjectCard = (
       gradientColor={project.featured ? 'var(--primary)' : 'var(--secondary)'}
     >
       <div className="relative h-48 overflow-hidden">
-        <img
+        <Image
           src={project.image}
           alt={project.title}
+          width={400}
+          height={192}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
         />

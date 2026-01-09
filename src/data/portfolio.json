@@ -56,7 +56,7 @@
       "id": 1,
       "title": "Physical AI Textbook",
       "description": "An interactive textbook on Physical AI & Humanoid Robotics with an embedded RAG-powered AI agent. Built with Docusaurus, the agent can answer questions about the entire textbook content using advanced retrieval systems.",
-      "image": "http://localhost:3000/projects/physical-ai.png",
+      "image": "/assets/projects/physical-ai.png",
       "tech": [
         "Docusaurus",
         "Python",
@@ -73,7 +73,7 @@
       "id": 2,
       "title": "ElevateCV",
       "description": "A modern, responsive resume builder application with intuitive interface and customizable templates. Features user authentication, cloud storage, and premium templates with Stripe integration.",
-      "image": "http://localhost:3000/projects/elevate-cv.png",
+      "image": "/assets/projects/elevate-cv.png",
       "tech": [
         "Next.js",
         "React",
@@ -91,7 +91,7 @@
       "id": 3,
       "title": "DevBits",
       "description": "A comprehensive blogging platform offering tutorials and articles on web development topics including HTML, CSS, JavaScript, TypeScript, React, and more.",
-      "image": "http://localhost:3000/projects/devbits.png",
+      "image": "/assets/projects/devbits.png",
       "tech": [
         "Next.js",
         "React",
@@ -108,7 +108,7 @@
       "id": 4,
       "title": "Nike E-Commerce",
       "description": "Full-featured e-commerce platform built during a hackathon. Includes product management, cart functionality, authentication, payment processing, and shipping integration.",
-      "image": "http://localhost:3000/projects/nike.png",
+      "image": "/assets/projects/nike.png",
       "tech": [
         "Next.js",
         "Sanity",

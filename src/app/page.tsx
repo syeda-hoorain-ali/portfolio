@@ -8,8 +8,17 @@ import { Skills } from '@/components/sections/skills';
 import { Projects } from '@/components/sections/projects';
 import { Achievements } from '@/components/sections/achievements';
 import { Contact } from '@/components/sections/contact';
+import { QueryClient } from '@tanstack/react-query';
+import { fetchPortfolioData } from '@/hooks/usePortfolioData';
 
 export default function Home() {
+
+  const queryClient = new QueryClient();
+  queryClient.prefetchQuery({
+    queryKey: ['portfolioData'],
+    queryFn: fetchPortfolioData,
+  })
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Background Effects */}

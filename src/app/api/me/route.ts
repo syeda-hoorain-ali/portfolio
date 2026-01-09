@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import portfolioData from '@/data/portfolio.json';
+import { isSameOrigin } from '@/utils/sameOriginCheck';
 
 async function fetchGitHubStats() {
   try {
@@ -97,23 +98,34 @@ async function fetchGitHubStats() {
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Check if the request is from the same origin
+  const isFromSameOrigin = isSameOrigin(request);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || '';
+
   try {
     const githubStats = await fetchGitHubStats();
 
-    // Replace localhost URLs with environment variable base URL
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-
     // Update project image URLs to use the base URL
-    const updatedProjects = portfolioData.projects.map(project => ({
-      ...project,
-      image: project.image.replace('http://localhost:3000', baseUrl)
-    }));
+    const updatedProjects = portfolioData.projects.map(project => {
+      if (isFromSameOrigin) return project
+      return {
+        ...project,
+        image: baseUrl + project.image,
+      }
+    });
+
+    const resumeUrl = portfolioData.personal.resumeUrl;
+    const updatedResumeUrl = isFromSameOrigin ? resumeUrl : baseUrl + resumeUrl;
 
     // Merge the static portfolio data with dynamic GitHub stats and updated URLs
     const dynamicPortfolioData = {
       ...portfolioData,
       projects: updatedProjects,
+      personal: {
+        ...portfolioData.personal,
+        resumeUrl: updatedResumeUrl,
+      },
       stats: {
         ...portfolioData.stats,
         ...githubStats
@@ -133,15 +145,24 @@ export async function GET() {
   } catch (error) {
     console.error('Error in /api/me route:', error);
     // Also update URLs in error case
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const errorProjects = portfolioData.projects.map(project => ({
-      ...project,
-      image: project.image.replace('http://localhost:3000', baseUrl)
-    }));
+    const errorProjects = portfolioData.projects.map(project => {
+      if (isFromSameOrigin) return project
+      return {
+        ...project,
+        image: baseUrl + project.image,
+      }
+    });
+
+    const resumeUrl = portfolioData.personal.resumeUrl;
+    const errorResumeUrl = isFromSameOrigin ? resumeUrl : baseUrl + resumeUrl;
 
     const errorPortfolioData = {
       ...portfolioData,
-      projects: errorProjects
+      projects: errorProjects,
+      personal: {
+        ...portfolioData.personal,
+        resumeUrl: errorResumeUrl,
+      },
     };
 
     return NextResponse.json(errorPortfolioData, {
