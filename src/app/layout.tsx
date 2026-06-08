@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers/query-provider";
+import { Analytics } from '@vercel/analytics/next';
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -56,6 +57,7 @@ export default function RootLayout({
         <Providers>
           {children}
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
